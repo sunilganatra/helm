@@ -335,6 +335,8 @@ func (u *Upgrade) performUpgrade(originalRelease, upgradedRelease *release.Relea
 		}
 	}
 
+	u.cfg.Log("Release : %s, Wait : %b, Atomic : %b", upgradedRelease.Name, u.Wait, u.Atomic)
+	
 	if u.Wait {
 		if err := u.cfg.KubeClient.Wait(target, u.Timeout); err != nil {
 			u.cfg.recordRelease(originalRelease)

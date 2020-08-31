@@ -343,6 +343,8 @@ func (i *Install) Run(chrt *chart.Chart, vals map[string]interface{}) (*release.
 		}
 	}
 
+	i.cfg.Log("Release : %s, Wait : %b, Atomic : %b", release.Name, i.Wait, i.Atomic)
+	
 	if i.Wait {
 		if err := i.cfg.KubeClient.Wait(resources, i.Timeout); err != nil {
 			return i.failRelease(rel, err)
